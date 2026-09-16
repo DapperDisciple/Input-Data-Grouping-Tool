@@ -1,0 +1,10 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+class Main$ParsedLine {
+   String datePart;
+   String letterGroup;
+
+   Main$ParsedLine(String var1, String var2) {
+      this.datePart = var1;
+      this.letterGroup = var2;
+   }
+}
