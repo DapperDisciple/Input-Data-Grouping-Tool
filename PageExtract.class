@@ -1,0 +1,52 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.io.File;
+import java.io.IOException;
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+
+public class PageExtract {
+   public PageExtract() {
+   }
+
+   public static String extractWords(String var0) throws IOException {
+      PDDocument var1 = Loader.loadPDF(new File(var0));
+
+      String var4;
+      try {
+         PDFTextStripper var2 = new PDFTextStripper();
+         String var3 = var2.getText(var1);
+         var4 = var3;
+      } catch (Throwable var6) {
+         if (var1 != null) {
+            try {
+               var1.close();
+            } catch (Throwable var5) {
+               var6.addSuppressed(var5);
+            }
+         }
+
+         throw var6;
+      }
+
+      if (var1 != null) {
+         var1.close();
+      }
+
+      return var4;
+   }
+
+   public static void main(String[] var0) {
+      if (var0.length == 0) {
+         System.out.println("Usage: java PageExtract <pdf-file-path>");
+      } else {
+         try {
+            String var1 = extractWords(var0[0]);
+            System.out.println(var1);
+         } catch (IOException var2) {
+            System.out.println("Error reading PDF: " + var2.getMessage());
+         }
+
+      }
+   }
+}
